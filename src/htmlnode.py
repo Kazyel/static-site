@@ -49,7 +49,7 @@ class ParentNode(HTMLNode):
             children_html += node.to_html()
         
         props_string = self.props_to_html() if self.props is not None else ''
-        return f"<{self.tag}{props_string}>{children_html}</{self.tag}>"
+        return f"<{self.tag}{props_string}>{children_html}</{self.tag}>\n\n"
             
     def __repr__(self):
         return f"ParentNode({self.tag}, children: {self.children}, {self.props})"

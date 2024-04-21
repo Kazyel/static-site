@@ -1,35 +1,35 @@
-from htmlnode import  HTMLNode, LeafNode, ParentNode
-from textnode import (
-    TextNode,
-    text_type_text,
-    text_type_bold,
-    text_type_italic,
-    text_type_code,
-    text_type_image,
-    text_type_link,
-)
-
-from text_node_to_html import text_node_to_html_node
-from split_nodes_delimiter import split_nodes_delimiter
-from extract import extract_markdown_images, extract_markdown_links
-from split_nodes import split_nodes_image, split_nodes_link
-
+from os import (path, listdir, mkdir)
+from shutil import (copy, rmtree)
+from generate_page import generate_page
 
 def main():
-    text = 'This is **text** with an *italic* word and a `code block` and an ![image](https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/zjjcJKZ.png) and a [link](https://boot.dev)'
+    public_dir = './public'
+    static_dir = './static'
     
-    
-    def text_to_textnodes(text):    
-        node = TextNode(text, text_type_text)
+    if path.exists(public_dir):
+        rmtree(public_dir)
+        mkdir(public_dir)
         
-        bold_split = split_nodes_delimiter([node], '**', text_type_bold)
-        italic_split = split_nodes_delimiter(bold_split, '*', text_type_italic)
-        code_split = split_nodes_delimiter(italic_split, '`', text_type_code)
-        image_split = split_nodes_image(code_split)
-        link_split = split_nodes_link(image_split)
+        files = listdir(static_dir)
+
+        for file in files:
+            if file.endswith('.png') or file.endswith('.jpeg'):
+                mkdir(public_dir + '/images')
+                copy(path.join(static_dir, file), public_dir + '/images')
+            else:
+                copy(path.join(static_dir, file),(public_dir))
+
+    else:
+        mkdir(public_dir)
+        files = listdir(static_dir)
+
+        for file in files:
+            if file.endswith('.png') or file.endswith('.jpeg'):
+                mkdir(public_dir + '/images')
+                copy(path.join(static_dir, file), public_dir + '/images')
+            else:    
+                copy(path.join(static_dir, file),(public_dir))
         
-        return link_split
-    
-    print(text_to_textnodes(text))
-    
+    generate_page('./content', './template.html', public_dir)
+        
 main()
