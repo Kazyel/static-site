@@ -1,6 +1,6 @@
 from os import (path, listdir, mkdir)
 from shutil import (copy, rmtree)
-from generate_page import generate_page
+from generate_page import generate_page_recursive
 
 def main():
     public_dir = './public'
@@ -30,6 +30,6 @@ def main():
             else:    
                 copy(path.join(static_dir, file),(public_dir))
         
-    generate_page('./content', './template.html', public_dir)
+    generate_page_recursive('./content', './template.html', public_dir)
         
 main()

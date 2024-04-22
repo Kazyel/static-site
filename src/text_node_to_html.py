@@ -1,4 +1,4 @@
-from textnode import (
+from classes.textnode import (
     text_type_text,
     text_type_bold,
     text_type_italic,
@@ -7,7 +7,7 @@ from textnode import (
     text_type_link,
 )
 
-from htmlnode import LeafNode
+from classes.htmlnode import LeafNode
 
 def text_node_to_html_node(text_node):
     if text_node.text_type == text_type_text:

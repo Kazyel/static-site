@@ -1,5 +1,5 @@
-from extract import extract_markdown_images, extract_markdown_links
-from textnode import (
+from extractions.extract import extract_markdown_images, extract_markdown_links
+from classes.textnode import (
     TextNode,
     text_type_text,
     text_type_bold,

@@ -1,4 +1,4 @@
-from textnode import (
+from classes.textnode import (
     TextNode,
     text_type_text,
     text_type_bold,

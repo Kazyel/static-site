@@ -1,4 +1,4 @@
-from textnode import (
+from classes.textnode import (
     TextNode,
     text_type_text,
     text_type_bold,
@@ -8,8 +8,8 @@ from textnode import (
     text_type_link,
 )
 
-from split_nodes_delimiter import split_nodes_delimiter
-from split_nodes import split_nodes_image, split_nodes_link
+from splitting.split_nodes_delimiter import split_nodes_delimiter
+from splitting.split_nodes import split_nodes_image, split_nodes_link
 
 def text_to_textnodes(text):    
     node = TextNode(text, text_type_text)
